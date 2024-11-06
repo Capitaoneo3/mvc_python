@@ -1,0 +1,4 @@
+INSERT IGNORE INTO usuarios (nome, idade, email) VALUES
+('Carlos', 30, 'carlos@example.com'),
+('Ana', 28, 'ana@example.com'),
+('Pedro', 22, 'pedro@example.com');
