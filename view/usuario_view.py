@@ -2,8 +2,6 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-from view.proximo_view import ProximoView
-
 class UsuarioView(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -27,11 +25,7 @@ class UsuarioView(tk.Frame):
         self.idade_entry.grid(row=1, column=1, padx=10, pady=5)
         
         self.adicionar_button = ttk.Button(self, text="Adicionar")
-        self.adicionar_button.grid(row=2, column=0, pady=10)
-
-        self.proximo_button  = ttk.Button(self, text="Próximo")
-        self.proximo_button.grid(row=2, column=1, pady=10)
-
+        self.adicionar_button.grid(row=2, column=0, columnspan=2,padx=10, pady=10)
 
         self.usuarios_listbox = tk.Listbox(self)
         self.usuarios_listbox.grid(row=3, column=0, columnspan=2, padx=10, pady=5, sticky="nsew")
@@ -46,13 +40,11 @@ class UsuarioView(tk.Frame):
         return self.idade_entry.get()
 
     def adicionar_usuario_lista(self, usuario):
-        self.usuarios_listbox.insert(tk.END, f"{usuario[1]} ({usuario[2]} anos)")
+        self.usuarios_listbox.insert(tk.END, f"id {usuario[0]} | {usuario[1]} ({usuario[2]} anos)")
 
     def ocultar_tudo(self):
     # Oculta todos os widgets
         for widget in self.winfo_children():
             widget.grid_forget()
 
-    def proximo_vew(self):
-        pv = ProximoView(self.parent)
        

@@ -5,7 +5,7 @@ class UsuarioController:
         self.view = view
         self.model = model
         self.view.adicionar_button.config(command=self.adicionar_usuario)
-        self.view.proximo_button.config(command=self.proxima_tela)
+        
         self.carregar_usuarios()
         self.view.idade_entry.bind("<Return>", lambda event: self.adicionar_usuario())  # Corrigido para chamar o método
         self.view.idade_entry.focus()
@@ -44,6 +44,3 @@ class UsuarioController:
         for usuario in usuarios:
             self.view.adicionar_usuario_lista(usuario)
 
-    def proxima_tela(self):
-        self.view.ocultar_tudo()
-        self.view.proximo_vew()

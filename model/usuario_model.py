@@ -29,5 +29,24 @@ class UsuarioModel:
         cursor.execute('SELECT * FROM usuarios')
         return cursor.fetchall()
 
+
+    def atualiza_usuario(self,id,nome,idade):
+        cursor = self.conn.cursor()
+        cursor.execute(f'''
+            update usuarios
+            set nome = ?,idade = ?
+            where id = ?
+        ''',(nome,idade,id))
+        
+        self.conn.commit()
+
+    def delete_usuario(self,id):
+        cursor = self.conn.cursor()
+        cursor.execute(f'''
+            delete from usuarios
+            where id = ?
+        ''',(id,))
+        self.conn.commit()
+
     def fechar_conexao(self):
         self.conn.close()
