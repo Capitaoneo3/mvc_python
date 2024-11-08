@@ -40,13 +40,22 @@ class UsuarioModel:
         
         self.conn.commit()
 
-    def delete_usuario(self,id):
+    def delete_usuario(self, id):
         cursor = self.conn.cursor()
-        cursor.execute(f'''
-            delete from usuarios
-            where id = ?
-        ''',(id,))
-        self.conn.commit()
+
+        try:
+            cursor.execute(f"DELETE FROM usuarios WHERE id = ?", (id,))
+            self.conn.commit()
+            return True  # Deletion successful
+        except Exception as e:
+            print(f"Error deleting user: {e}")
+            self.conn.rollback()
+            return False  # Deletion failed
+
+    def select_usuario(self,id):
+        cursor = self.conn.cursor()
+        cursor.execute('SELECT * FROM usuarios where id = ?',(id,))
+        return cursor.fetchall()
 
     def fechar_conexao(self):
         self.conn.close()
