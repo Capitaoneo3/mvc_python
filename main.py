@@ -13,8 +13,8 @@ if __name__ == "__main__":
     root.geometry("400x300")
 
     model = UsuarioModel()
-    view = Usuario_delete_view(root)
-    controller = Usuario_delete_controller(view, model)
+    view = UsuarioView(root)
+    controller = UsuarioController(view, model)
 
     root.mainloop()
     model.fechar_conexao()

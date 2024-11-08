@@ -20,7 +20,8 @@ class UsuarioController:
         self.view.idade_entry.config(background="white")
         if not nome.isdigit() and nome and idade.isdigit():
             self.model.inserir_usuario(nome, int(idade))
-            self.view.adicionar_usuario_lista((None, nome, idade))
+            self.apagar_a_lista()
+            self.carregar_usuarios()
             self.view.nome_entry.delete(0, tk.END)
             self.view.idade_entry.delete(0, tk.END)
         elif nome.isdigit() or nome == "":
@@ -44,3 +45,5 @@ class UsuarioController:
         for usuario in usuarios:
             self.view.adicionar_usuario_lista(usuario)
 
+    def apagar_a_lista(self):
+        self.view.usuarios_listbox.delete(0,tk.END)

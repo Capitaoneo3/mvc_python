@@ -39,4 +39,6 @@ class Usuario_delete_view(tk.Frame):
         for widget in self.winfo_children():
             widget.grid_forget()
 
-       
+    def apagar_a_lista(self):
+        self.usuarios_listbox.delete(0,tk.END)
+ 
