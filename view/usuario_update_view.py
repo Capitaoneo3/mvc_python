@@ -31,8 +31,8 @@ class Usuario_update_view(tk.Frame):
         self.idade_entry = tk.Entry(self)
         self.idade_entry.grid(row=2, column=1, padx=10, pady=5)
         
-        self.adicionar_button = ttk.Button(self, text="Atualizar")
-        self.adicionar_button.grid(row=3, column=0, columnspan=2,padx=10, pady=10)
+        self.atualizar_button = ttk.Button(self, text="Atualizar")
+        self.atualizar_button.grid(row=3, column=0, columnspan=2,padx=10, pady=10)
 
         self.usuarios_listbox = tk.Listbox(self)
         self.usuarios_listbox.grid(row=4, column=0, columnspan=2, padx=10, pady=5, sticky="nsew")
@@ -45,7 +45,10 @@ class Usuario_update_view(tk.Frame):
 
     def get_idade(self):
         return self.idade_entry.get()
-
+    
+    def get_id(self):
+        return self.id_entry.get()
+    
     def adicionar_usuario_lista(self, usuario):
         self.usuarios_listbox.insert(tk.END, f"id {usuario[0]} | {usuario[1]} ({usuario[2]} anos)")
 
@@ -55,3 +58,5 @@ class Usuario_update_view(tk.Frame):
             widget.grid_forget()
 
        
+    def apagar_a_lista(self):
+        self.usuarios_listbox.delete(0,tk.END)

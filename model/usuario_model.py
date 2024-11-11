@@ -32,13 +32,18 @@ class UsuarioModel:
 
     def atualiza_usuario(self,id,nome,idade):
         cursor = self.conn.cursor()
-        cursor.execute(f'''
-            update usuarios
-            set nome = ?,idade = ?
-            where id = ?
-        ''',(nome,idade,id))
-        
-        self.conn.commit()
+        try:
+            cursor.execute(f'''
+                update usuarios
+                set nome = ?,idade = ?
+                where id = ?
+            ''',(nome,idade,id))
+            self.conn.commit()
+            return True
+        except Exception as e:   
+            print(f"Error deleting user: {e}")
+            self.conn.rollback()
+            return False 
 
     def delete_usuario(self, id):
         cursor = self.conn.cursor()
@@ -59,3 +64,6 @@ class UsuarioModel:
 
     def fechar_conexao(self):
         self.conn.close()
+
+
+
